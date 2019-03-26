@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>cn.codeforfun</groupId>
-    <artifactId>oauth2-server</artifactId>
+    <artifactId>d2-oauth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>oauth2-server</name>
     <description>Demo project for Spring Boot</description>
