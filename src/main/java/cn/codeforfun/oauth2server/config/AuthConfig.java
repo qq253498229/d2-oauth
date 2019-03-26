@@ -12,10 +12,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.token.AccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 import javax.annotation.Resource;
 
@@ -34,9 +32,8 @@ public class AuthConfig extends AuthorizationServerConfigurerAdapter {
     private UserServiceImpl userServiceImpl;
     @Resource
     private AuthenticationManager authenticationManager;
-
     @Resource
-    private CustomJwtAccessTokenConverter jwtAccessTokenConverter;
+    private CustomTokenEnhancer tokenEnhancer;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -68,12 +65,11 @@ public class AuthConfig extends AuthorizationServerConfigurerAdapter {
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         // 自定义user实现类
         endpoints.userDetailsService(userServiceImpl);
-        // 自定义tokenConverter
-        endpoints.accessTokenConverter(jwtAccessTokenConverter);
         // 自定义tokenStore
         endpoints.tokenStore(tokenStore());
         // 密码模式需要
         endpoints.authenticationManager(authenticationManager);
+        endpoints.tokenEnhancer(tokenEnhancer);
     }
 
     private TokenStore tokenStore() {
