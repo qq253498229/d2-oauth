@@ -4,6 +4,7 @@ import cn.codeforfun.oauth2server.client.ClientServiceImpl;
 import cn.codeforfun.oauth2server.user.UserServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -31,6 +32,8 @@ public class AuthConfig extends AuthorizationServerConfigurerAdapter {
     private ClientServiceImpl clientServiceImpl;
     @Resource
     private UserServiceImpl userServiceImpl;
+    @Resource
+    private AuthenticationManager authenticationManager;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -66,6 +69,8 @@ public class AuthConfig extends AuthorizationServerConfigurerAdapter {
         endpoints.accessTokenConverter(jwtTokenConverter());
         // 自定义tokenStore
         endpoints.tokenStore(tokenStore());
+        // 密码模式需要
+        endpoints.authenticationManager(authenticationManager);
     }
 
     private TokenStore tokenStore() {
