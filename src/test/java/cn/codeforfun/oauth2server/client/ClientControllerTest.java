@@ -2,7 +2,9 @@ package cn.codeforfun.oauth2server.client;
 
 import cn.codeforfun.oauth2server.Oauth2ServerApplication;
 import cn.codeforfun.oauth2server.Oauth2ServerApplicationTests;
+import cn.codeforfun.oauth2server.client.exception.ClientExistException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
+@Ignore
 public class ClientControllerTest {
     @Autowired
     private MockMvc mockMvc;

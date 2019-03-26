@@ -35,6 +35,9 @@ public class AuthConfig extends AuthorizationServerConfigurerAdapter {
     @Resource
     private AuthenticationManager authenticationManager;
 
+    @Resource
+    private CustomJwtAccessTokenConverter jwtAccessTokenConverter;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -66,7 +69,7 @@ public class AuthConfig extends AuthorizationServerConfigurerAdapter {
         // 自定义user实现类
         endpoints.userDetailsService(userServiceImpl);
         // 自定义tokenConverter
-        endpoints.accessTokenConverter(jwtTokenConverter());
+        endpoints.accessTokenConverter(jwtAccessTokenConverter);
         // 自定义tokenStore
         endpoints.tokenStore(tokenStore());
         // 密码模式需要
@@ -76,10 +79,6 @@ public class AuthConfig extends AuthorizationServerConfigurerAdapter {
     private TokenStore tokenStore() {
         // 暂时用内存级存储，之后需要改成redis
         return new InMemoryTokenStore();
-    }
-
-    private AccessTokenConverter jwtTokenConverter() {
-        return new JwtAccessTokenConverter();
     }
 
 }

@@ -1,5 +1,7 @@
 package cn.codeforfun.oauth2server.client;
 
+import cn.codeforfun.oauth2server.client.exception.ClientExistException;
+import cn.codeforfun.oauth2server.client.exception.ClientNotExistException;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.ClientRegistrationException;

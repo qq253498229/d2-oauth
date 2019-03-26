@@ -27,6 +27,7 @@ public class UserRepositoryTest {
         userRepository.deleteAll();
         userRepository.flush();
         User user = new User(USER, "password", true, null);
+        user.setNickname("test");
         userRepository.save(user);
     }
 

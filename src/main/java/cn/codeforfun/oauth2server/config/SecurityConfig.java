@@ -42,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         });
         // 忽略H2数据库的路径(测试用，之后需要删除)
         http.authorizeRequests().antMatchers("/console/**").permitAll();
+        http.authorizeRequests().antMatchers("/user/**").permitAll();
         // 拦截所有请求
         http.authorizeRequests().anyRequest().authenticated();
     }

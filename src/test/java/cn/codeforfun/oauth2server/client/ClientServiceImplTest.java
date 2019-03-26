@@ -1,5 +1,7 @@
 package cn.codeforfun.oauth2server.client;
 
+import cn.codeforfun.oauth2server.client.exception.ClientExistException;
+import cn.codeforfun.oauth2server.client.exception.ClientNotExistException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

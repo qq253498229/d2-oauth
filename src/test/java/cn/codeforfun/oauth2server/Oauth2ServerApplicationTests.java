@@ -47,6 +47,7 @@ public class Oauth2ServerApplicationTests {
             User user = userRepository.loadUserByUsername(userName);
             if (user == null) {
                 user = new User(userName, encoder.encode("password"), true, Collections.singletonList(role));
+                user.setNickname("test");
                 userRepository.save(user);
             }
 

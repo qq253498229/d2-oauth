@@ -1,5 +1,6 @@
 package cn.codeforfun.oauth2server.user;
 
+import cn.codeforfun.oauth2server.util.JsonUtil;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,9 +30,12 @@ public class User implements UserDetails {
     @GeneratedValue
     private Integer id;
 
-    private Date createAt;
+    private Date createAt = new Date();
 
-    private Date updateAt;
+    private Date updateAt = new Date();
+
+    @Column(unique = true, nullable = false, length = 64)
+    private String nickname;
 
     @ManyToOne
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
@@ -108,4 +112,7 @@ public class User implements UserDetails {
         return this.enabled;
     }
 
+    String toJson() {
+        return JsonUtil.toJson(this);
+    }
 }

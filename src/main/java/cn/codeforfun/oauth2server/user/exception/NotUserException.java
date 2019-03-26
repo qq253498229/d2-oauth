@@ -1,4 +1,4 @@
-package cn.codeforfun.oauth2server.user;
+package cn.codeforfun.oauth2server.user.exception;
 
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -11,5 +11,5 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
  * @author wangbin
  */
 @ResponseStatus(NOT_FOUND)
-class NotUserException extends RuntimeException {
+public class NotUserException extends RuntimeException {
 }
