@@ -18,12 +18,10 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.Assert.*;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.HttpStatus.FOUND;
@@ -121,8 +119,9 @@ public class TokenTest {
         ObjectMapper mapper = new ObjectMapper();
         Map map = mapper.readValue(body, HashMap.class);
         String access_token = (String) map.get("access_token");
-        String userInfoJson = new String(Base64.getDecoder().decode(access_token.split("\\.")[1]), UTF_8);
-        Map userInfo = mapper.readValue(userInfoJson, HashMap.class);
-        return USERNAME.equals(userInfo.get("user_name"));
+        String refresh_token = (String) map.get("refresh_token");
+        assertNotNull(access_token);
+        assertNotNull(refresh_token);
+        return true;
     }
 }
