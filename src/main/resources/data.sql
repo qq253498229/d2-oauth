@@ -7,5 +7,5 @@ values (1, 'client', '$2a$10$YACEb/LqIN2eZRSd2sKbuOleAsCm7PIJQ0ob73FKxGrD3dmeGUZ
         'password,authorization_code,refresh_token', 'app',
         604800, 7200, null);
 
-insert into t_role (id, name)
+insert ignore into t_role (id, name)
 values (1, 'USER');
