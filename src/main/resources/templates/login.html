@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>登录</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+</head>
+<body>
+<div class="container">
+    <form class="form-signin needs-validation" novalidate method="post" action="/login">
+        <h2 class="form-signin-heading text-center">请登录</h2>
+        <p>
+            <label for="username" class="sr-only">用户名</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="用户名" required
+                   autofocus>
+        </p>
+        <p>
+            <label for="password" class="sr-only">密码</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="密码" required>
+        </p>
+        <div class="invalid-feedback">
+            Please choose a username.
+        </div>
+        <p class="mb-5">
+            <a href="/register" class="float-left">注册</a>
+            <!--            <a href="/register" class="float-left">注册</a>-->
+            <!--            <a href="#" class="float-right">忘记密码</a>-->
+        </p>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+    </form>
+</div>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+            var url = new URL(window.location.href);
+            if (url.search === '?error') {
+                forms[0].classList.add('was-validated')
+            }
+        }, false);
+    })();
+</script>
+</body>
+</html>

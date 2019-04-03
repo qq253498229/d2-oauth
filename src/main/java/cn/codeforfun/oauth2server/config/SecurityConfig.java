@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().httpBasic();
         http.headers().frameOptions().disable();
         // 忽略登录操作认证
-        http.formLogin().permitAll();
+        http.formLogin().loginPage("/login").permitAll();
         // 设置注销成功后跳转到注销之前的页面，防止继续登录之后跳转到错误页面
         http.logout().logoutSuccessHandler((request, response, authentication) -> {
             if (request.getHeader(REFERER) == null) {
@@ -43,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 忽略H2数据库的路径(测试用，之后需要删除)
         http.authorizeRequests().antMatchers("/console/**").permitAll();
         http.authorizeRequests().antMatchers("/user/**").permitAll();
+        http.authorizeRequests().antMatchers("/register").permitAll();
         // 拦截所有请求
         http.authorizeRequests().anyRequest().authenticated();
     }
